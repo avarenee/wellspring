@@ -1,77 +1,69 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" >
+  <meta charset="UTF-8">
   <head>
-    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4/stitch.js"></script>
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.1.1/stitch.js"></script>
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.1.1/stitch-core.js"></script>
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.1.1/stitch-services-aws.js"></script>
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.1.1/stitch-services-http.js"></script>
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.1.1/stitch-services-mongodb-remote.js"></script>
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.1.1/stitch-services-twilio.js"></script>
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script><
+    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/style.css') }}"></link>
 
-    <script src=" {{ url_for('static', filename='js/db.js') }}"></script>
-    <script src=" {{ url_for('static', filename='js/flowers.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/mood.css') }}"></link>
-  </head>
-  <body onload="displayResponsesOnLoad()">
-    <h1>Wellspring</h1>
+    <script>
+        const client = stitch.Stitch.initializeDefaultAppClient('wellspring-pugwj');
+      
+        const db = client.getServiceClient(stitch.RemoteMongoClient.factory, 'mongodb-atlas').db('WellspringUsers');
+      
+        client.auth.loginWithCredential(new stitch.AnonymousCredential()).then(user =>
+          db.collection('Profiles').updateOne({owner_id: client.auth.user.id}, {responses:"Sample client response for therapy"})
+        ).then(() =>
+          db.collection('Profiles').find({owner_id: client.auth.user.id}, { limit: 100}).asArray()
+        ).then(docs => {
+            console.log("Found docs", docs)
+            console.log("[MongoDB Stitch] Connected to Stitch")
+        }).catch(err => {
+          console.error(err)
+        });
+      </script>
 
-    <div id="app-cover">
-            <h1>What's your mood today?</h1>
-            <div id="app">
-              <div class="mood" id="mood-great">
-                <div class="face">
-                  <div class="eyes-cover">
-                    <div class="eye"></div>
-                    <div class="eye"></div>
-                  </div>
-                  <div class="mouth"></div>
-                </div>
-                <div class="mood-name"><span>great</span></div>
-              </div>
-              <div class="mood" id="mood-okay">
-                <div class="face">
-                  <div class="eyes-cover">
-                    <div class="eye"></div>
-                    <div class="eye"></div>
-                  </div>
-                  <div class="mouth"></div>
-                </div>
-                <div class="mood-name"><span>okay</span></div>
-              </div>
-              <div class="mood" id="mood-bad">
-                <div class="face">
-                  <div class="eyes-cover">
-                    <div class="eye"></div>
-                    <div class="eye"></div>
-                  </div>
-                  <div class="mouth"></div>
-                </div>
-                <div class="mood-name"><span>bad</span></div>
-              </div>
-            </div>
-          </div>
-    <!-- Add comment:
-    <input id="new_Response"><input type="submit" onClick="addResponses()"> -->
+<body>
+
+    <div class="wrapper">
+
+            <div id="step" class="sleep">1</div>
+            <form id="plant_thought">
+                <p id="pin_0" class="click pulse">Plant a thought.</p>
+                <p id="pin_1"></p>
+                <p>
+                    <input id="q1_response" type="text" class="sleep" autocomplete="off" spellcheck="false" />
+                </p>
+                <p id="pin_2"></p>
+                <p>
+                    <input id="q2_response" type="email" class="sleep" autocomplete="off" spellcheck="false" />
+                </p>
+                <p id="pin_3"></p>
+                <p>
+                    <input id="q3_response" type="text" class="sleep" autocomplete="off" spellcheck="false" />
+                </p>
+                <p id="pin_4"></p>
+                <p id="pin_5"></p>
+                <p id="pin_6"></p>
+                <p id="type" contenteditable="true" class="sleep">Feel free to use <b>bold (Ctrl-B)</b>, <i>italics (Ctrl-I),</i> even <u>underlines (Ctrl-U)</u> if you must..</p>
+                <p id="pin_7"></p>
+                <input id="go" class="sleep" type="button" value="Plant 🌱" onclick="addResponse()" />
+                <p id="pin_8"></p>
+                <p id="pin_9"></p>
+            </form>
+              
+
+    </div>
+
  
-    <!-- <h1>Let's plant a thought.</h1>
-    <form>
-    <input type="text" name="response1" class="question" id="r1" required autocomplete="off" />
-    <label for="q1"><span>What's on your mind?</span></label>
-    <textarea name="response2" rows="2" class="question" id="r2" required autocomplete="off"></textarea>
-    <label for="q2"><span>How're you feeling overall?</span></label>
-    <textarea name="response3" rows="2" class="question" id="r3" required autocomplete="off"></textarea>
-    <label for="q3"><span>Other ways you could reframe your thoughts?</span></label>
-    <input type="plant" value="Plant" onClick="addResponses()"" />
-    </form> -->
+   <script  src=" {{ url_for('static', filename='js/index.js') }}"></script>
 
-    <!-- <svg id='svg' xmlns="http://www.w3.org/2000/svg">
-            <defs>
-            <g id="flower">
-                <path class="fc1" fill="none" stroke="#333333" stroke-width="1" 
-                      d="M0,0 q50,-25 100,0 q-50,25 -100,0 q-50,25 -100,0 q50,-25 100,0"/>	
-                <path class="fc2" fill="none" stroke="#333333" stroke-width="1"
-                            d="M0,0 q53.03,-17.68 70.71,-70.71 q-53.03,17.68 -70.71,70.71 q-53.03,17.68 -70.71,70.71 q53.03,-17.68 70.71,-70.71"/>
-                <path class="fc3" fill="none" stroke="#333333" stroke-width="1"
-                          d="M0,0 q25,-50 0,-100 q-25,50 0,100 q-25,50 0,100 q25,-50 0,-100"/>
-                <path class="fc4" fill="none" stroke="#333333" stroke-width="1"
-                          d="M0,0 q-17.68,-53.03 -70.71,-70.71 q17.68,53.03 70.71,70.71 q17.68,53.03 70.71,70.71 q-17.68,-53.03 -70.71,-70.71"/>
-            </g>
-            </defs>
-        </svg> -->
-          
-  </body>
+
+</body>
+
 </html>

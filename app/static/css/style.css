@@ -1,177 +1,165 @@
-body {
-	background: #333;
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+* {
 	margin: 0;
-	overflow: hidden;
+	padding: 0;
+	cursor: default;
+	box-sizing: border-box;
+	cursor: default;
+	outline: none;
 }
 
-svg{
-	width:100vw;
-	height:100vh;
+*:focus {
+	outline: none;
 }
 
-.fc1 { fill: violet;  }
-.fc2 { fill: hotpink; }
-.fc3 { fill: lavender;}
-.fc4 { fill: skyblue; }
-
-svg path {
-	fill: inherit;
+::-moz-selection {
+	color: black;
 }
-/*
-Basic input element using psuedo classes
-*/
 
-html {
-  font-family: 'Muli', sans-serif;
-  width: 100%;
+::selection {
+	color: black;
 }
 
 body {
-  margin: 5% auto 0 auto;
-  width: 90%;
-  max-width: 1125px;
+	font-family: 'Muli', sans-serif;
+	margin: 2rem;
+	color: black;
 }
 
-h1 {
-  font-size: 28px;
-  font-family: 'Muli', sans-serif;
-  margin-bottom: 2.5%;
-}
-
-input,
-span,
-label,
-textarea {
-  font-family: 'Ubuntu', sans-serif;
-  display: block;
-  margin: auto;
-  padding: 5px;
-  border: none;
-  font-size: 22px;
-}
-
-textarea:focus,
-input:focus {
-  outline: 0;
-}
-/* Question */
-
-input.question,
-textarea.question {
-  font-size: 48px;
-  font-weight: 300;
-  border-radius: 2px;
-  margin: 0;
-  border: none;
-  width: 80%;
-  background: rgba(0, 0, 0, 0);
-  transition: padding-top 0.2s ease, margin-top 0.2s ease;
-  overflow-x: hidden; /* Hack to make "rows" attribute apply in Firefox. */
-}
-/* Underline and Placeholder */
-
-input.question + label,
-textarea.question + label {
-  display: block;
-  position: relative;
-  white-space: nowrap;
-  padding: 0;
-  margin: 0;
-  width: 10%;
-  border-top: 1px solid red;
-  -webkit-transition: width 0.4s ease;
-  transition: width 0.4s ease;
-  height: 0px;
-}
-
-input.question:focus + label,
-textarea.question:focus + label {
-  width: 80%;
-}
-
-input.question:focus,
-input.question:valid {
-  padding-top: 35px;
-}
-
-textarea.question:valid,
-textarea.question:focus {
-  margin-top: 35px;
-}
-
-input.question:focus + label > span,
-input.question:valid + label > span {
-  top: -100px;
-  font-size: 22px;
-  color: #333;
-}
-
-textarea.question:focus + label > span,
-textarea.question:valid + label > span {
-  top: -150px;
-  font-size: 22px;
-  color: #333;
-}
-
-input.question:valid + label,
-textarea.question:valid + label {
-  border-color: green;
-}
-
-input.question:invalid,
-textarea.question:invalid {
-  box-shadow: none;
-}
-
-input.question + label > span,
-textarea.question + label > span {
-  font-weight: 300;
-  margin: 0;
-  position: absolute;
-  color: #8F8F8F;
-  font-size: 48px;
-  top: -66px;
-  left: 0px;
-  z-index: -1;
-  -webkit-transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
-  transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
-}
-
-input[type="submit"] {
-  -webkit-transition: opacity 0.2s ease, background 0.2s ease;
-  transition: opacity 0.2s ease, background 0.2s ease;
-  display: block;
+.sleep {
   opacity: 0;
-  margin: 10px 0 0 0;
-  padding: 10px;
-  cursor: pointer;
 }
 
-input[type="submit"]:hover {
-  background: #EEE;
+.rest {
+	height: 0;
+  opacity: 0;
 }
 
-input[type="submit"]:active {
-  background: #999;
+.wake {
+  opacity: 1;
 }
 
-input.question:valid ~ input[type="submit"], textarea.question:valid ~ input[type="submit"] {
-  -webkit-animation: appear 1s forwards;
-  animation: appear 1s forwards;
+p {
+	position: relative;
+	z-index: 2;
+	font-family: Montserrat, sans-serif;
+	font-size: 1.5rem;
+	line-height: 2rem;
+	height: 5rem;
+	-webkit-transition: 1s ease-out .5s;
+	transition: 1s ease-out .5s;
 }
 
-input.question:invalid ~ input[type="submit"], textarea.question:invalid ~ input[type="submit"] {
-  display: none;
+#type {
+	height: auto;
+	margin: 2rem 0;
 }
 
-@-webkit-keyframes appear {
-  100% {
-    opacity: 1;
-  }
+.collapsed {
+	height: 0;
 }
 
-@keyframes appear {
-  100% {
-    opacity: 1;
-  }
+[contenteditable] {
+	color: hsl(330, 10%, 50%);
+	border: 0 solid hsl(330, 10%, 50%);
+	border-width: 0 .1rem;
+	padding: 0 1em;
+	-webkit-transition: 1s ease-out;
+	transition: 1s ease-out;
+}
+
+[contenteditable]:focus {
+	color: hsl(30, 100%, 75%);
+	border-color: hsl(330, 10%, 50%);
+}
+
+input[type=button] {
+	position: relative;
+	top: 0rem;
+	font-family: Montserrat, sans-serif;
+	font-size: 2rem;
+	font-weight: 700;
+	color: hsl(330, 10%, 25%);
+	background: transparent;
+	border: .2rem solid hsl(330, 10%, 25%);
+	border-radius: .75rem;
+	padding: 0.5rem 1rem;
+	box-shadow: 0 0 0 hsl(330, 10%, 5%);
+	-webkit-transition: 1s ease-out;
+	transition: 1s ease-out;
+	cursor: pointer;
+}
+
+input[type=button]:hover {
+	top: -.5rem;
+	color: black;
+	border: .2rem solid hsl(30, 100%, 75%);
+	box-shadow: 0 .5rem 0.5rem hsl(330, 10%, 5%);
+}
+
+input[type=text],
+input[type=email] {
+	font-family: 'Muli', sans-serif;
+	font-size: 1.5rem;
+	line-height: 2.5rem;
+	color: black;
+	background: transparent;
+	border: 0 solid hsl(330, 10%, 25%);
+	border-width: 0 0 .1rem 0;
+	width: 3em;
+	-webkit-transition: 1s ease-out;
+	transition: 1s ease-out;
+}
+
+.click {
+	cursor: pointer;
+}
+
+body.wait .click {
+	cursor: default;
+}
+
+.pulse {
+	-webkit-animation: pulse 2s infinite linear;
+	        animation: pulse 2s infinite linear;
+}
+
+.pulse:hover {
+	-webkit-animation: none;
+	        animation: none;
+}
+
+@-webkit-keyframes pulse {
+	0% {
+		opacity: .25;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: .25;
+	}
+}
+
+@keyframes pulse {
+	0% {
+		opacity: .25;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: .25;
+	}
+}
+
+.wrapper {
+  margin-right: auto; /* 1 */
+  margin-left:  auto; /* 1 */
+
+  max-width: 960px; /* 2 */
+
+  padding-right: 10px; /* 3 */
+  padding-top: 50px;
+  padding-left:  10px; /* 3 */
 }
