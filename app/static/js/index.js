@@ -67,7 +67,7 @@ _show_q1response = function() {
 
 _show_q2response = function() {
 	var ename = q1response.replace(/\s/g, '');
-	q2_response.value = ename + '@';
+	q2_response.value = '';
 	q2_response.className = 'wake pulse';
 	q2_response.focus();
 };
@@ -204,7 +204,7 @@ _q1_response_react = function() {
 	if (q1_response.value != '' && si == 1) {
 		document.getElementById('pin_' + ii).className = 'rest';
 		q1response = q1_response.value.toTitleCase();
-		sts[2] = 'Thank you, we know it can be difficult to lay all your thoughts out. \n How would you describe your mood right now? >'
+		sts[2] = 'Thank you, we know it can be difficult to lay out your thoughts. \n How would you describe your mood right now? >'
 		si = 2;
 		ii = 2;
 		q1_response.removeEventListener('blur', _q1_response_react, false);
@@ -219,7 +219,7 @@ _q2_response_react = function() {
 	if (q2_response.value != '' && si == 2) {
 		document.getElementById('pin_' + ii).className = 'rest';
 		q2response = q2_response.value;
-		sts[3] = 'Thank you - whether you\'re having a great day or feeling down, it means a lot for you to be aware of your own thoughts. \n If you had to pick a color to describe your mood, what would it be?>'
+		sts[3] = 'Thank you - whether you\'re having a great day or feeling down, it\'s important to be in touch with yourself. \n If you had to pick a color to describe your mood, what would it be?>'
 		si = 3;
 		ii = 3;
 		q2_response.removeEventListener('blur', _q1_response_react, false);

@@ -20,9 +20,12 @@
 	color: black;
 }
 
+a { color: inherit; } 
+
 body {
 	font-family: 'Muli', sans-serif;
 	margin: 2rem;
+	background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 	color: black;
 }
 
@@ -69,7 +72,7 @@ p {
 }
 
 [contenteditable]:focus {
-	color: hsl(30, 100%, 75%);
+	color: black;
 	border-color: hsl(330, 10%, 50%);
 }
 
@@ -93,7 +96,7 @@ input[type=button] {
 input[type=button]:hover {
 	top: -.5rem;
 	color: black;
-	border: .2rem solid hsl(30, 100%, 75%);
+	border: .2rem solid black;
 	box-shadow: 0 .5rem 0.5rem hsl(330, 10%, 5%);
 }
 
@@ -154,12 +157,16 @@ body.wait .click {
 }
 
 .wrapper {
-  margin-right: auto; /* 1 */
-  margin-left:  auto; /* 1 */
-
-  max-width: 960px; /* 2 */
-
-  padding-right: 10px; /* 3 */
-  padding-top: 50px;
-  padding-left:  10px; /* 3 */
+  text-align: center;
+  margin-right: 0 auto; /* 1 */
+  margin-left: 0 auto; /* 1 */
+  max-width: 500px; /* 2 */
 }
+
+.form-container {
+	color:#f8f8ff;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }

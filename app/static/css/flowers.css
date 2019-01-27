@@ -1,0 +1,19 @@
+body {
+	background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	margin: 0;
+	overflow: hidden;
+}
+
+svg{
+	width:100vw;
+	height:100vh;
+}
+
+.fc1 { fill: transparent; }
+.fc2 { fill: transparent; }
+.fc3 { fill: transparent; }
+.fc4 { fill: transparent; }
+
+svg path {
+	fill: inherit;
+}
