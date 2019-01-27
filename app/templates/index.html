@@ -1,50 +1,77 @@
-<!DOCTYPE html>
-<html lang="en" >
+<html>
+  <head>
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4/stitch.js"></script>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Wellspring</title>
-  
-  
-      <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.1.1/stitch.js"></script>
-      <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
-      <link rel="stylesheet" href="{{ url_for('static',filename='css/spectre-exp.min.css')}} ">
-      <link rel="stylesheet" href="{{ url_for('static',filename='css/spectre.min.css')}} ">
-      <link rel="stylesheet" href="{{ url_for('static',filename='css/spectre-icons.min.css') }}">
-      <link rel="stylesheet" href="{{ url_for('static',filename='css/modal.css') }}">
+    <script src=" {{ url_for('static', filename='js/db.js') }}"></script>
+    <script src=" {{ url_for('static', filename='js/flowers.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/mood.css') }}"></link>
+  </head>
+  <body onload="displayResponsesOnLoad()">
+    <h1>Wellspring</h1>
 
-      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-  
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-
-</head>
-
-<body>
-
-    <canvas id = "canvas">
-    <button class="trigger">Click here to trigger the modal!</button>
-    <div class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h1>Hello, I am a modal!</h1>
-        </div>
-    </div>
-	
-
-    </canvas>
-   
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-
-  
+    <div id="app-cover">
+            <h1>What's your mood today?</h1>
+            <div id="app">
+              <div class="mood" id="mood-great">
+                <div class="face">
+                  <div class="eyes-cover">
+                    <div class="eye"></div>
+                    <div class="eye"></div>
+                  </div>
+                  <div class="mouth"></div>
+                </div>
+                <div class="mood-name"><span>great</span></div>
+              </div>
+              <div class="mood" id="mood-okay">
+                <div class="face">
+                  <div class="eyes-cover">
+                    <div class="eye"></div>
+                    <div class="eye"></div>
+                  </div>
+                  <div class="mouth"></div>
+                </div>
+                <div class="mood-name"><span>okay</span></div>
+              </div>
+              <div class="mood" id="mood-bad">
+                <div class="face">
+                  <div class="eyes-cover">
+                    <div class="eye"></div>
+                    <div class="eye"></div>
+                  </div>
+                  <div class="mouth"></div>
+                </div>
+                <div class="mood-name"><span>bad</span></div>
+              </div>
+            </div>
+          </div>
+    <!-- Add comment:
+    <input id="new_Response"><input type="submit" onClick="addResponses()"> -->
  
-  
+    <!-- <h1>Let's plant a thought.</h1>
+    <form>
+    <input type="text" name="response1" class="question" id="r1" required autocomplete="off" />
+    <label for="q1"><span>What's on your mind?</span></label>
+    <textarea name="response2" rows="2" class="question" id="r2" required autocomplete="off"></textarea>
+    <label for="q2"><span>How're you feeling overall?</span></label>
+    <textarea name="response3" rows="2" class="question" id="r3" required autocomplete="off"></textarea>
+    <label for="q3"><span>Other ways you could reframe your thoughts?</span></label>
+    <input type="plant" value="Plant" onClick="addResponses()"" />
+    </form> -->
 
-    <script  src="{{ url_for('static',filename='js/index.js') }}"></script>
-
-
-</body>
-
+    <!-- <svg id='svg' xmlns="http://www.w3.org/2000/svg">
+            <defs>
+            <g id="flower">
+                <path class="fc1" fill="none" stroke="#333333" stroke-width="1" 
+                      d="M0,0 q50,-25 100,0 q-50,25 -100,0 q-50,25 -100,0 q50,-25 100,0"/>	
+                <path class="fc2" fill="none" stroke="#333333" stroke-width="1"
+                            d="M0,0 q53.03,-17.68 70.71,-70.71 q-53.03,17.68 -70.71,70.71 q-53.03,17.68 -70.71,70.71 q53.03,-17.68 70.71,-70.71"/>
+                <path class="fc3" fill="none" stroke="#333333" stroke-width="1"
+                          d="M0,0 q25,-50 0,-100 q-25,50 0,100 q-25,50 0,100 q25,-50 0,-100"/>
+                <path class="fc4" fill="none" stroke="#333333" stroke-width="1"
+                          d="M0,0 q-17.68,-53.03 -70.71,-70.71 q17.68,53.03 70.71,70.71 q17.68,53.03 70.71,70.71 q-17.68,-53.03 -70.71,-70.71"/>
+            </g>
+            </defs>
+        </svg> -->
+          
+  </body>
 </html>
